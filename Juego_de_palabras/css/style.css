@@ -73,3 +73,13 @@
     background: var(--fondo-boton-hover);
     text-shadow: 2px 2px 2px var(--negro);
 }
+
+/*archivo voltear*/
+
+.acierto {
+    background-color: green;
+}
+
+.fallo {
+    background-color: red;
+}

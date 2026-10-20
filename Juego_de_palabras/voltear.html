@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voltear y adivinar</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <!--Juego de tarjetas en el que te encuentras una palabra y debes
+    responder con su resultado. Se dará la vuelta y marcará si haciertas 
+    o fallas-->
+    <header id="cabecera_voltear">
+        <h1>Voltea y adivina</h1>
+        <p>Voltea las cartas e intenta adivinar su resultado</p>
+    </header>
+    <main id="main_voltear">
+
+    </main>
+    <script>
+        var fallos = 0;
+        var intentos = 0;
+        async function voltear() {
+            try {
+                const documento = await fetch('palabras.json');
+                if (!documento.ok) {
+                    throw new Error('No se pudo cargar el archivo');
+                }
+                const palabras = await documento.json();
+                const main = document.getElementById("main_voltear");
+                let contenedor = document.createElement("article");
+                for (let x = 0; x < palabras.length; x++) {
+                    const boton = document.createElement("button");
+                    boton.textContent= palabras[x].palabra;
+                    boton.addEventListener("click", function() {    
+                        const palabra = boton.textContent;                  
+                        const traduccion = palabras[x].traduccion;
+                        const respuestaPrompt = prompt("Palabra: " + palabra + ". ¿Cual es su traducción?");
+                        if (respuestaPrompt === null) return;
+                        const intento = respuestaPrompt.toLowerCase().trim();
+                        if (intento == traduccion) {
+                            boton.setAttribute("class","acierto");
+                        } else {
+                            boton.setAttribute("class","fallo");
+                            fallos++;
+                        }
+                        boton.textContent = traduccion;
+                        intentos++;
+
+                    });
+                    contenedor.appendChild(boton);
+                    if ((x + 1) % 5 == 0) {
+                        const salto = document.createElement("br");
+                        contenedor.appendChild(salto);
+                        main.append(contenedor);
+                        contenedor = document.createElement("article");
+                    }
+                }
+
+                if (contenedor.children.length > 0) {
+                main.appendChild(contenedor);
+        }
+            } catch (err) {
+                alert(err);
+            }
+            
+        }
+
+        voltear();
+
+        
+    </script>
+</body>
+
+</html>

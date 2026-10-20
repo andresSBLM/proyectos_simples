@@ -9,5 +9,9 @@
   { "id": 8, "palabra": "no", "traduccion": "no" },
   { "id": 9, "palabra": "amigo", "traduccion": "friend" },
   { "id": 10, "palabra": "familia", "traduccion": "family" },
-  { "id": 11, "palabra": "casa", "traduccion": "house" }
+  { "id": 11, "palabra": "casa", "traduccion": "house" },
+  { "id": 12, "palabra": "libro", "traduccion": "book" },
+  { "id": 13, "palabra": "perro", "traduccion": "dog" },
+  { "id": 14, "palabra": "gato", "traduccion": "cat" },
+  { "id": 15, "palabra": "agua", "traduccion": "water" }
 ]
