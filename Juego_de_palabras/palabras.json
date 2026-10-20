@@ -1,0 +1,13 @@
+[
+  { "id": 1, "palabra": "hola", "traduccion": "hello" },
+  { "id": 2, "palabra": "adios", "traduccion": "goodbye" },
+  { "id": 3, "palabra": "gracias", "traduccion": "thank you" },
+  { "id": 4, "palabra": "por favor", "traduccion": "please" },
+  { "id": 5, "palabra": "buenos dias", "traduccion": "good morning" },
+  { "id": 6, "palabra": "buenas noches", "traduccion": "good night" },
+  { "id": 7, "palabra": "si", "traduccion": "yes" },
+  { "id": 8, "palabra": "no", "traduccion": "no" },
+  { "id": 9, "palabra": "amigo", "traduccion": "friend" },
+  { "id": 10, "palabra": "familia", "traduccion": "family" },
+  { "id": 11, "palabra": "casa", "traduccion": "house" }
+]

@@ -1,0 +1,75 @@
+/* Configuraciones globales */
+
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --blanco: white;
+    --negro: black;
+    --azul: blue;
+    --fondo-body-inicio: linear-gradient( rgba(54, 211, 242, 0.778), rgba(236, 236, 61, 0.778));
+    --fondo-h1-inicio: linear-gradient(45deg, #155eef, #0d670d);
+    --fondo-boton-inicio:  linear-gradient(90deg,  #97420a, #fc8804);
+    --fondo-boton-hover: linear-gradient(90deg, black, white);
+    --sombras: black;
+}
+
+/*Archivo principal de inicio index.html */
+
+
+#body_inicio {
+    background: var(--fondo-body-inicio), url(../img/body_inicio.jpeg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-repeat: no-repeat;
+    min-height: 90.7vh;
+}
+
+#cabecera_inicio{
+    text-align: center;
+}
+
+#cabecera_inicio h1 {
+    background: var(--fondo-h1-inicio);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    font-size: 6rem;
+    font-weight: bold;
+    padding-top: 70px;
+    margin-bottom: 0;
+}
+
+#cabecera_inicio p {
+    color:rgb(6, 99, 35);
+    text-shadow: 1px 1px 1px var(--blanco);
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+#main_inicio {
+    text-align: center;
+}
+
+#main_inicio button {
+    max-width: 30%;
+    margin: auto;
+    width: 100%;
+    padding: 20px;
+    margin-top: 10px;
+    border-radius: 20px;
+    border: 2px solid var(--blanco);
+    background: var(--fondo-boton-inicio);
+    color: var(--blanco);
+    font-weight: bold;
+    font-size: 1.5rem;
+    box-shadow: 2px 2px 2px var(--negro);
+}
+
+#main_inicio button:hover {
+    background: var(--fondo-boton-hover);
+    text-shadow: 2px 2px 2px var(--negro);
+}
