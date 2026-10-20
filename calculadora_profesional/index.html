@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calculadora profesional">
+    <title>Calculadora</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <main id="principal">
+        <div id="fondo-entrada-salida">
+            <input id="salida" name="salida" type="text" readonly>  
+            <input id="entrada" name="entrada" type="text" readonly>  
+        </div>
+        <article class="fila" id="inicio">
+            <button onclick="numero(7)">7</button>
+            <button onclick="numero(8)">8</button>
+            <button onclick="numero(9)">9</button>
+            <button onclick="borrar_ultimo()">DEL</button>
+            <button onclick="borrar_todo()">AC</button> 
+        </article>
+        <article class="fila">
+            <button onclick="numero(4)">4</button>
+            <button onclick="numero(5)">5</button>
+            <button onclick="numero(6)">6</button>
+            <button onclick="numero('x')">x</button>
+            <button onclick="numero('%')">%</button> 
+        </article>
+        <article class="fila">
+            <button onclick="numero(1)">1</button>
+            <button onclick="numero(2)">2</button>
+            <button onclick="numero(3)">3</button>
+            <button onclick="numero('+')">+</button>
+            <button onclick="numero('-')">-</button>
+        </article>
+        <article id="final" class="fila">
+            <button onclick="numero(0)">0</button>
+            <button onclick="numero('.')">.</button>
+            <button onclick="numero(ultimo_resultado)">ANS</button>
+            <button onclick="evaluar()">=</button>
+        </article>
+
+    </main>
+    <script>
+        const salida = document.getElementById("salida");
+        const entrada = document.getElementById("entrada");
+        var estado = "";
+        var ultimo_resultado = "";
+
+        function numero(num) 
+        {   
+            if ((num == "x" || num == "%" || num == "-" || num == "+") && estado == "reciente_resultado") {
+                entrada.value = ultimo_resultado;
+            } else if (estado == "reciente_resultado") 
+            {
+                entrada.value = "";
+            }
+            entrada.value += num;
+            estado = "";
+        }
+
+        function borrar_ultimo() {
+            entrada.value = entrada.value.slice(0, -1);
+        }
+
+        function borrar_todo() {
+            entrada.value = "";
+            salida.value = "";
+        }
+
+        function evaluar() {
+            try {
+                const expresion = entrada.value.replaceAll("x","*").replaceAll("%","/");
+                const resultado = eval(expresion);
+                salida.value = resultado;
+                ultimo_resultado = resultado;
+                estado = "reciente_resultado";
+            }
+            catch (err) {
+                salida.value = "SyntaxError";
+                entrada.value = "";
+            }
+        }
+    </script>
+</body>
+</html>
