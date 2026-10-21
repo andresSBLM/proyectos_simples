@@ -22,6 +22,7 @@
     <script>
         var fallos = 0;
         var intentos = 0;
+        var id = 0;
         async function voltear() {
             try {
                 const documento = await fetch('palabras.json');
@@ -33,23 +34,9 @@
                 let contenedor = document.createElement("article");
                 for (let x = 0; x < palabras.length; x++) {
                     const boton = document.createElement("button");
+                    boton.setAttribute("onclick", `hacer_intento(${boton})`)
                     boton.textContent= palabras[x].palabra;
-                    boton.addEventListener("click", function() {    
-                        const palabra = boton.textContent;                  
-                        const traduccion = palabras[x].traduccion;
-                        const respuestaPrompt = prompt("Palabra: " + palabra + ". ¿Cual es su traducción?");
-                        if (respuestaPrompt === null) return;
-                        const intento = respuestaPrompt.toLowerCase().trim();
-                        if (intento == traduccion) {
-                            boton.setAttribute("class","acierto");
-                        } else {
-                            boton.setAttribute("class","fallo");
-                            fallos++;
-                        }
-                        boton.textContent = traduccion;
-                        intentos++;
-
-                    });
+                    
                     contenedor.appendChild(boton);
                     if ((x + 1) % 5 == 0) {
                         const salto = document.createElement("br");
@@ -60,8 +47,25 @@
                 }
 
                 if (contenedor.children.length > 0) {
-                main.appendChild(contenedor);
-        }
+                    main.appendChild(contenedor);
+                }
+                function hacer_intento(bot) {
+                    const boton = bot;
+                    const palabra = boton.textContent;                  
+                    const traduccion = palabras[x].traduccion;
+                    const respuestaPrompt = prompt("Palabra: " + palabra + ". ¿Cual es su traducción?");
+                    if (respuestaPrompt === null) return;
+                    const intento = respuestaPrompt.toLowerCase().trim();
+                    if (intento == traduccion) {
+                        boton.setAttribute("class","acierto");
+                    } else {
+                        boton.setAttribute("class","fallo");
+                        fallos++;
+                    }
+                    boton.textContent = traduccion;
+                    intentos++;
+                    return boton;
+                }
             } catch (err) {
                 alert(err);
             }
