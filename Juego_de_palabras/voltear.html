@@ -8,9 +8,9 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body>
+<body id="body_voltear">
     <!--Juego de tarjetas en el que te encuentras una palabra y debes
-    responder con su resultado. Se dará la vuelta y marcará si haciertas 
+    responder con su resultado. Se dará la vuelta y marcará si aciertas 
     o fallas-->
     <header id="cabecera_voltear">
         <h1>Voltea y adivina</h1>
@@ -21,22 +21,27 @@
     </main>
     <script>
         var fallos = 0;
+        var aciertos = 0;
         var intentos = 0;
-        var id = 0;
+        var numero_palabras = 0;
+        const main = document.getElementById("main_voltear");
         async function voltear() {
             try {
-                const documento = await fetch('palabras.json');
+                const documento = await fetch('palabras.json', { cache: 'no-store' });
                 if (!documento.ok) {
                     throw new Error('No se pudo cargar el archivo');
                 }
                 const palabras = await documento.json();
-                const main = document.getElementById("main_voltear");
+                numero_palabras = palabras.length;
+
                 let contenedor = document.createElement("article");
                 for (let x = 0; x < palabras.length; x++) {
-                    const boton = document.createElement("button");
-                    boton.setAttribute("onclick", `hacer_intento(${boton})`)
-                    boton.textContent= palabras[x].palabra;
-                    
+                    var boton = document.createElement("button");
+                    boton.id = "bot" + x;
+                    boton.textContent = palabras[x].palabra;
+                    boton.addEventListener("click", function () {
+                        hacer_intento(x, palabras);
+                    });
                     contenedor.appendChild(boton);
                     if ((x + 1) % 5 == 0) {
                         const salto = document.createElement("br");
@@ -49,32 +54,51 @@
                 if (contenedor.children.length > 0) {
                     main.appendChild(contenedor);
                 }
-                function hacer_intento(bot) {
-                    const boton = bot;
-                    const palabra = boton.textContent;                  
-                    const traduccion = palabras[x].traduccion;
-                    const respuestaPrompt = prompt("Palabra: " + palabra + ". ¿Cual es su traducción?");
-                    if (respuestaPrompt === null) return;
-                    const intento = respuestaPrompt.toLowerCase().trim();
-                    if (intento == traduccion) {
-                        boton.setAttribute("class","acierto");
-                    } else {
-                        boton.setAttribute("class","fallo");
-                        fallos++;
-                    }
-                    boton.textContent = traduccion;
-                    intentos++;
-                    return boton;
-                }
+
             } catch (err) {
                 alert(err);
             }
-            
+
+        }
+
+        function hacer_intento(num, palabras) {
+            const numero = num;
+            const palabra = palabras[numero].palabra;
+            const traduccion = palabras[numero].traduccion;
+
+            const respuesta = prompt("Palabra: " + palabra + ". ¿Cuál es su traducción?");
+            if (respuesta === null) return;
+
+            const intento = respuesta.toLowerCase().trim();
+
+            const boton = document.getElementById("bot" + numero);
+
+            if (intento === traduccion.toLowerCase().trim()) {
+                boton.className = "acierto";
+                aciertos++;
+            } else {
+                boton.className = "fallo";
+                fallos++;
+            }
+            boton.textContent = traduccion;
+            boton.disabled = true;
+            intentos++;
+            if (intentos >= numero_palabras) {
+                main.innerHTML = "";
+                alert("Tienes "+ fallos + " fallos y " + aciertos + " aciertos.");
+                var reset = confirm("¿Quieres volver a intentarlo?");
+                if (reset) {
+                    fallos = 0;
+                    aciertos = 0;
+                    intentos = 0;
+                    voltear()
+                } else {
+                    window.location.href = "index.html";
+                }
+            }
         }
 
         voltear();
-
-        
     </script>
 </body>
 

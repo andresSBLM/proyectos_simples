@@ -9,9 +9,13 @@
     --negro: black;
     --azul: blue;
     --fondo-body-inicio: linear-gradient( rgba(54, 211, 242, 0.778), rgba(236, 236, 61, 0.778));
+    --fondo-main-voltear: linear-gradient(rgba(255, 255, 255, 0.582), rgba(0, 0, 0, 0.493));
     --fondo-h1-inicio: linear-gradient(45deg, #155eef, #0d670d);
     --fondo-boton-inicio:  linear-gradient(90deg,  #97420a, #fc8804);
-    --fondo-boton-hover: linear-gradient(90deg, black, white);
+    --fondo-boton-hover: linear-gradient(90deg, rgb(0, 0, 0), rgba(255, 255, 255, 0.664));
+    --fondo-acierto: linear-gradient(rgba(7, 247, 7, 0.555), rgba(0, 128, 0, 0.479));
+    --fondo-fallo: linear-gradient(rgba(247, 7, 7, 0.555), rgba(221, 101, 101, 0.479));
+    --fondo-carta: linear-gradient(rgba(173, 170, 170, 0.575), rgba(238, 229, 229, 0.514));
     --sombras: black;
 }
 
@@ -24,7 +28,7 @@
     background-position: center;
     background-repeat: no-repeat;
     background-repeat: no-repeat;
-    min-height: 90.7vh;
+    min-height: 100vh;
 }
 
 #cabecera_inicio{
@@ -76,10 +80,41 @@
 
 /*archivo voltear*/
 
-.acierto {
-    background-color: green;
+#body_voltear {
+    background: var(--fondo-main-voltear), url(../img/fondo_voltear.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100vh ;
+    margin: auto;
+    text-align: center;
 }
 
-.fallo {
-    background-color: red;
+#main_voltear .acierto {
+    background: var(--fondo-acierto);
+    color: var(--negro);
+    font-weight: bold;
+}
+
+#main_voltear .fallo {
+    background: var(--fondo-fallo);
+    color: var(--blanco);
+    text-shadow: 2px 2px 2px var(--sombras);
+    font-weight: bold;
+}
+
+#main_voltear button {
+    background:  var(--fondo-carta),  url(../img/carta.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 300px;
+    height: 100px;
+    font-size: 1.5rem;
+    border: none;
+    margin: 5px;
+    border-radius: 20px;
+    font-weight: bold;
+    color: var(--negro);
+    text-shadow: 2px 2px 2px var(--blanco);
 }
