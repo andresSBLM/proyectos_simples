@@ -20,6 +20,7 @@
 
     </main>
     <script>
+        var tiempo_inicio = Date.now();
         var fallos = 0;
         var aciertos = 0;
         var intentos = 0;
@@ -85,12 +86,18 @@
             intentos++;
             if (intentos >= numero_palabras) {
                 main.innerHTML = "";
-                alert("Tienes "+ fallos + " fallos y " + aciertos + " aciertos.");
+                const tiempo_final = Date.now();
+                const tiempo = tiempo_final - tiempo_inicio;
+                const minutos = 1000*60;
+                const segundos = 1000;
+                alert("Tienes "+ fallos + " fallos y " + aciertos + " aciertos. Tardaste: " + 
+                (tiempo / minutos).toFixed(0) + " min , " + ((tiempo % minutos) / segundos).toFixed(0) + " seg");
                 var reset = confirm("¿Quieres volver a intentarlo?");
                 if (reset) {
                     fallos = 0;
                     aciertos = 0;
                     intentos = 0;
+                    tiempo_inicio = Date.now();
                     voltear()
                 } else {
                     window.location.href = "index.html";

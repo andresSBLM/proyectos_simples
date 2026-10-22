@@ -9,14 +9,15 @@
     --negro: black;
     --azul: blue;
     --verde: green;
+    --rojo: red;
     --fondo-body-inicio: linear-gradient( rgba(54, 211, 242, 0.778), rgba(236, 236, 61, 0.778));
     --fondo-main-voltear: linear-gradient(rgba(255, 255, 255, 0.582), rgba(0, 0, 0, 0.493));
     --fondo-h1-inicio: linear-gradient(45deg, #155eef, #0d670d);
     --fondo-h1-voltear: linear-gradient(45deg, #fd0404, #000000);
     --fondo-boton-inicio:  linear-gradient(90deg,  #97420a, #fc8804);
-    --fondo-boton-hover: linear-gradient(90deg, rgb(0, 0, 0), rgba(255, 255, 255, 0.664));
-    --fondo-acierto: linear-gradient(rgba(7, 247, 7, 0.555), rgba(0, 128, 0, 0.479));
-    --fondo-fallo: linear-gradient(rgba(247, 7, 7, 0.555), rgba(221, 101, 101, 0.479));
+    --fondo-boton-hover: linear-gradient(90deg, rgba(255, 2, 2, 0.764), rgba(0, 0, 0, 0.847));
+    --fondo-acierto: linear-gradient(rgb(7, 247, 7), rgba(0, 128, 0, 0.479));
+    --fondo-fallo: linear-gradient(rgb(247, 7, 7), rgba(221, 101, 101, 0.479));
     --fondo-carta: linear-gradient(rgba(173, 170, 170, 0.575), rgba(238, 229, 229, 0.514));
     --fondo-carta-hover: linear-gradient(rgba(61, 220, 220, 0.766), rgba(18, 95, 210, 0.755));
     --sombras: black;
@@ -113,14 +114,14 @@
     margin-bottom: 70px;
 }
 
-#main_voltear .acierto {
+#body_voltear #main_voltear .acierto {
     background: var(--fondo-acierto);
     color: var(--blanco);
     text-shadow: 2px 2px 2px var(--verde);
     font-weight: bold;
 }
 
-#main_voltear .fallo {
+#body_voltear #main_voltear .fallo {
     background: var(--fondo-fallo);
     color: var(--blanco);
     text-shadow: 2px 2px 2px var(--sombras);
@@ -145,5 +146,10 @@
 }
 
 #main_voltear button:hover {
-    background:  var(--fondo-carta-hover);
+    background: var(--fondo-boton-hover),  url(../img/hover-carta.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: var(--rojo);
+    text-shadow: 2px 2px 2px var(--sombras);
 }
