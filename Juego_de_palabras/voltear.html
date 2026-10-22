@@ -20,11 +20,11 @@
 
     </main>
     <script>
-        var tiempo_inicio = Date.now();
         var fallos = 0;
         var aciertos = 0;
         var intentos = 0;
         var numero_palabras = 0;
+        var tiempo_inicio;
         const main = document.getElementById("main_voltear");
         async function voltear() {
             try {
@@ -63,6 +63,9 @@
         }
 
         function hacer_intento(num, palabras) {
+            if (intentos === 0) {
+                tiempo_inicio = Date.now();
+            }
             const numero = num;
             const palabra = palabras[numero].palabra;
             const traduccion = palabras[numero].traduccion;
