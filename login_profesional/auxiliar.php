@@ -14,18 +14,15 @@ function obtener_post($campo): ?string{
       return $elemento;
 }
 
-function obtener_email($campo, $pdo): array{
-    $sent = $pdo->prepare("SELECT * FROM usuarios WHERE email = :email");
-    $sent->execute([':email'=>$campo]);
-    return $sent->fetchAll();
-}
-
-function obtener_password($campo, $pdo): array{
-    $sent = $pdo->prepare("SELECT * FROM usuarios WHERE contrasena = :contrasena");
-    $sent->execute([':contrasena'=>$campo]);
-    return $sent->fetchAll();
-}
-
 function mover ($lugar) {
     header("Location:$lugar");
+    exit;
+}
+
+function comprobar_usuario_contrasena(PDO $pdo, string $email, string $password, &$errores):void {
+    $sent = $pdo->prepare("SELECT * FROM usuarios WHERE email = :email and contrasena = :contrasena");
+    $sent->execute([':email' => $email, ':contrasena'=> $password]);
+    if (empty($sent->fetchAll())) {
+        $errores[] = 'Email o contraseña incorrectos';
+    }
 }

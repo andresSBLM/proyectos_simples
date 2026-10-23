@@ -11,15 +11,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (!$email) {
         $errores[] = 'El email está vacío';
-    } elseif(empty(obtener_email($email, $pdo))) {
-        $errores[] = 'El email no está registrado';
-    } elseif (empty(obtener_password($password, $pdo))) {
-        $errores[] = 'La contraseña es incorrecta.';
     }
 
     if (!$password) {
         $errores[] = 'La contraseña está vacía.';
     } 
+    
+    if (!$errores) {
+        comprobar_usuario_contrasena($pdo, $email, $password, $errores);
+    }
 
     if (!$errores) {
         mover('usuarios.php');

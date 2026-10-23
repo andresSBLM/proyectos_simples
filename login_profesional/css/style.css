@@ -122,11 +122,6 @@ body {
     text-shadow: 3px 3px 3px var(--rojizo);
 }
 
-
-#bot_inicio {
-    margin-top: 20px;
-}
-
 #bot_registro {
     margin-top: 0;
 }
@@ -137,4 +132,8 @@ body {
     font-size: 1.1rem;
     padding: 0;
     text-align: left;
+}
+
+#errores_index ul {
+    margin-bottom: 0;
 }
