@@ -104,10 +104,22 @@ body {
 }
 
 #bot_inicio, #bot_registro {
-    width: 200px;
-    height: 40px;
+    width: 30%;
+    height: 10%;
     font-size: 1.5rem;
     font-weight: bold;
+    background-color: var(--rojizo);
+    border: none;
+    color: var(--blanco);
+    text-shadow: 3px 3px 3px var(--sombras);
+    padding: 15px;
+    border-radius: 20px;
+}
+
+#bot_inicio:hover , #bot_registro:hover {
+    background-color: var(--blanco);
+    color: var(--negro);
+    text-shadow: 3px 3px 3px var(--rojizo);
 }
 
 
@@ -117,4 +129,12 @@ body {
 
 #bot_registro {
     margin-top: 0;
+}
+
+#errores_index {
+    color: var(--blanco);
+    text-shadow: 1px 1px 1px var(--rojizo);
+    font-size: 1.1rem;
+    padding: 0;
+    text-align: left;
 }

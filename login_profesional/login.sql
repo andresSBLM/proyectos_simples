@@ -5,7 +5,7 @@ CREATE TABLE usuarios (
     nombre      VARCHAR(255)    NOT NULL,
     apellidos   VARCHAR(255)    NOT NULL,
     email       VARCHAR(255)    NOT NULL UNIQUE,
-    contrasena  VARCHAR(255)    NOT NULL UNIQUE
+    contrasena  VARCHAR(255)    NOT NULL
 );
 
 
@@ -13,7 +13,8 @@ CREATE TABLE usuarios (
 INSERT INTO usuarios (nombre, apellidos, email, contrasena) 
 VALUES
     ('paco', 'Guijarro Fierro', 'pagui@b.com', '123'),
-    ('jesus', 'jimenez serio', 'jusep@jes.com', '124');
+    ('jesus', 'jimenez serio', 'jusep@jes.com', '124'),
+    ('andres','serrano grigoruta', 'andresserranoblm13@gmail.com', '111');
 
 
 
