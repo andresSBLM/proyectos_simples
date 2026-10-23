@@ -10,7 +10,11 @@
     --negro: black;
     --verde: green;
     --morado: purple;
+    --rojizo: rgb(187, 24, 62);
     --sombras: black;
+    --fondo-index: linear-gradient(90deg, rgb(149, 32, 52), purple, rgb(149, 32, 52));
+    --fondo-main-index: linear-gradient(rgb(86, 6, 86), black,rgb(86, 6, 86));
+    --fondo-input: rgb(183, 124, 183);
 }
 
 body {
@@ -22,26 +26,46 @@ body {
 
 /*Archivo index.php*/
 
+#body_index {
+    background: var(--fondo-index);
+}
+
 #cabecera_index h1 {
     text-align: center;
     font-size: 3rem;
+    color: var(--blanco);
+    text-shadow: 6px 6px 6px var(--sombras);
+    margin-bottom: 10px;
 }
 
 #cabecera_index #eslogan {
     text-align: center;
+    color: var(--negro);
+    text-shadow: 3px 3px 3px var(--blanco);
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-top: 0;
 }
 
 #cabecera_index{
     text-align: center;
 }
 
-#main_index #form_principal {
+#main_index {
+    background: var(--fondo-main-index);
     max-width: 50%;
+    border-radius: 40px;
     margin: auto;
-    margin-top: 50px;
+    box-shadow: 10px 10px 1034px var(--blanco);
+}
+
+#main_index #form_principal {
+    max-width: 100%;
+    margin: auto;
+    margin-top: 60px;
     font-size: 2rem;
-    border-radius: 30px;
     text-align: center;
+    border: none;
 }
 
 #form_principal input {
@@ -50,14 +74,29 @@ body {
     padding-left: 20px;
     margin-top: 10px;
     font-size: 2rem;
+    background-color: var(--fondo-input);
+    border: none;
+    color: var(--blanco);
+    text-shadow: 2px 2px 2px var(--morado);
 }
 
+#form_principal input::placeholder {
+    color: var(--morado);
+    text-shadow: 2px 2px 2px var(--blanco);
+    opacity: 0.5;
+}
 #main_index legend {
     text-align: center;
+    padding-top: 20px;
+    color: var(--negro);
+    font-weight: bold;
+    text-shadow: 3px 3px 3px var(--rojizo);
 }
 
 #main_index #form_registrarse {
     margin-top: 20px;
+    border: none;
+    text-align: center;
 }
 
 #form_registrarse legend {
