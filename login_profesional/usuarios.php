@@ -72,9 +72,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 foreach ($filas as $usuario) {
                     ?>
                     <tr <?= ($usuario['email'] === $email) ? 'class="cuenta_actual"' : ''?>>
-                        <td class="nombre_usuario"><?= $usuario['nombre'] ?></td>
-                        <td class="apellidos_usuario"><?= $usuario['apellidos'] ?></td>
-                        <td class="email_usuario"><?= $usuario['email'] ?></td>
+                        <td><?= $usuario['nombre'] ?></td>
+                        <td><?= $usuario['apellidos'] ?></td>
+                        <td><?= $usuario['email'] ?></td>
                     </tr>
                     <?php
                 }

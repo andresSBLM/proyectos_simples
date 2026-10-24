@@ -19,6 +19,7 @@ VALUES
     ('Ana', 'Fernández Ramos', 'ana.fdez@c.com', '127'),
     ('David', 'Sánchez Navarro', 'david.snchz@d.com', '128'),
     ('Elena', 'Romero Torres', 'elena.rt@e.com', '129'),
+    ('andres','serrano grigoruta', 'andresserranoblm13@gmail.com', '111'),
     ('Miguel', 'Navarro Gil', 'miguel.ng@f.com', '130'),
     ('Lucia', 'Serrano Castro', 'lucia.sc@g.com', '131'),
     ('Javier', 'Ortega Molina', 'javi.om@h.com', '132'),
@@ -33,8 +34,8 @@ VALUES
     ('Sara', 'Nuñez Reyes', 'sara.nr@q.com', '141'),
     ('Marcos', 'Lozano Cruz', 'marcos.lc@r.com', '142'),
     ('Irene', 'Garrido Peña', 'irene.gp@s.com', '143'),
-    ('Hugo', 'Marín Santana', 'hugo.ms@t.com', '144'),
-    ('andres','serrano grigoruta', 'andresserranoblm13@gmail.com', '111');
+    ('Hugo', 'Marín Santana', 'hugo.ms@t.com', '144')
+    ;
 
 
 
