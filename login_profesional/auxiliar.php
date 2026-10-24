@@ -26,3 +26,18 @@ function comprobar_usuario_contrasena(PDO $pdo, string $email, string $password,
         $errores[] = 'Email o contraseña incorrectos';
     }
 }
+
+/* Archivo usuarios.php */
+
+function validar_nombre($nombre, &$errores): void {
+    if ($nombre == '') {
+        $errores[] = 'El nombre está vacío';
+    }
+}
+
+function buscar_usuario(PDO $pdo, string $nombre): ?array {
+    $sent = $pdo->prepare('SELECT * FROM usuarios WHERE nombre ilike :nombre');
+    $sent->execute([':nombre' => "%$nombre%"]);
+    return $sent->fetchAll();
+    
+}
