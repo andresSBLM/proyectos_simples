@@ -86,6 +86,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <a href="index.php" class="botones_admin" id="volver">Volver</a>
         <a href="usuarios.php" id="mostrar_todos" class="botones_admin">Mostrar Todo</a>
         <a href="borrar.php" id="cerrar_sesion" class="botones_admin">Cerrar Sesion</a>
+        <a href="modificar.php" id="modificar_cuenta" class="botones_admin">Modificar Cuenta</a>
     </main>
 </body>
 </html>
