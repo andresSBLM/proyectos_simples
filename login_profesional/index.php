@@ -8,7 +8,6 @@ $errores = [];
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = obtener_post('email');
     $password = obtener_post('password');
-    $id = obtener_post('id');
 
     if (!$email) {
         $errores[] = 'El email está vacío';
@@ -68,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <button id="bot_inicio" type="submit">Iniciar Sesión</button><br>
             </fieldset>
         </form>
-        <form action="registrarse.php" method="post">
+        <form action="registro.php" method="get">
             <fieldset id="form_registrarse">
                 <legend>No estoy registrado</legend><br>
                 <button id="bot_registro" type="submit">Registrarse</button>
