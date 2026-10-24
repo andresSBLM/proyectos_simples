@@ -4,14 +4,19 @@ function conectar(): PDO {
     return new PDO('pgsql:host=localhost;dbname=login', 'login','login');
 }
 
+function obtener_id(PDO $pdo, string $email): ?int {
+    $sent = $pdo->prepare('SELECT id FROM usuarios WHERE email = :email');
+    $sent->execute([':email'=> $email]);
+    return $sent->fetchColumn();
+}
+
 function todos_usuarios(PDO $pdo): array {
     $sent = $pdo->query('SELECT * FROM usuarios');
     return $sent->fetchAll();
 }
 
 function obtener_post($campo): ?string{
-      $elemento = $_POST[$campo];
-      return trim($elemento);
+      return trim($_POST[$campo] ?? '');
 }
 
 function mover ($lugar) {
@@ -40,4 +45,11 @@ function buscar_usuario(PDO $pdo, string $nombre): ?array {
     $sent->execute([':nombre' => "%$nombre%"]);
     return $sent->fetchAll();
     
+}
+
+/* Borrar.php */
+
+function darse_de_baja(PDO $pdo, string $email): void {
+    $sent = $pdo->prepare('DELETE FROM usuarios WHERE email = :email');
+    $sent->execute([':email'=>$email]);
 }

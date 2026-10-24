@@ -8,6 +8,7 @@ $errores = [];
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = obtener_post('email');
     $password = obtener_post('password');
+    $id = obtener_post('id');
 
     if (!$email) {
         $errores[] = 'El email está vacío';
@@ -22,6 +23,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if (!$errores) {
+        session_start();
+        $_SESSION['email'] = $email;
         mover('usuarios.php');
     }
 }

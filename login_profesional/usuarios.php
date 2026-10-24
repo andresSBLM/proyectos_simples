@@ -5,6 +5,10 @@ require 'auxiliar.php';
 $errores = [];
 
 $pdo = conectar();
+session_start();
+$email = $_SESSION['email']; 
+
+$id = obtener_id($pdo, $email);
 
 $filas = todos_usuarios($pdo);
 
@@ -50,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </ul>
         <?php 
         if (empty($errores)) {
-            ?> <p id="registros">Se encontraron <?=count($filas)?> registros</p> <?php
+            ?> <p id="registros">Se encontraron <?= count($filas) ?> registros</p> <?php
         }
         if (!empty($filas) and empty($errores)) {
         
@@ -67,7 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <?php
                 foreach ($filas as $usuario) {
                     ?>
-                    <tr>
+                    <tr <?= ($usuario['email'] === $email) ? 'class="cuenta_actual"' : ''?>>
                         <td class="nombre_usuario"><?= $usuario['nombre'] ?></td>
                         <td class="apellidos_usuario"><?= $usuario['apellidos'] ?></td>
                         <td class="email_usuario"><?= $usuario['email'] ?></td>
@@ -79,9 +83,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </tbody>
         </table>
         <?php } ?>
-        <a href="index.php" class="botones_admin">Volver</a>
+        <a href="index.php" class="botones_admin" id="volver">Volver</a>
         <a href="usuarios.php" id="mostrar_todos" class="botones_admin">Mostrar Todo</a>
+        <a href="borrar.php" id="cerrar_sesion" class="botones_admin">Cerrar Sesion</a>
     </main>
 </body>
-
 </html>
+
