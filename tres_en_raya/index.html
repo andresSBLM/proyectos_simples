@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=ç, initial-scale=1.0">
+    <title>Juego del tres en raya</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <header>
+        <h1>Tres en raya</h1>
+    </header>
+    <main>
+        <form>
+            <!--ejes: x, y, z, h, j-->
+            <input type="checkbox" id="c1" name="x1" value="ahd">
+            <input type="checkbox" id="c2" name="x1" value="bd">
+            <input type="checkbox" id="c3" name="x1" value="cdg">
+            <input type="checkbox" id="c4" name="x1" value="ae">
+            <input type="checkbox" id="c5" name="x1" value="bghe">
+            <input type="checkbox" id="c6" name="x1" value="ce">
+            <input type="checkbox" id="c7" name="x1" value="fga">
+            <input type="checkbox" id="c8" name="x1" value="fb">
+            <input type="checkbox" id="c9" name="x1" value="fch">
+        </form>
+        <script>
+            const casillas = document.querySelectorAll('input[type="checkbox"]');
+            var turno = 'x';
+            var registro = [];
+            let cuenta = {
+                x: { a: 0, b: 0, c: 0, d: 0, e: 0, f: 0, g: 0, h: 0 },
+                o: { a: 0, b: 0, c: 0, d: 0, e: 0, f: 0, g: 0, h: 0 }
+            };
+
+            casillas.forEach(function (casilla) {
+                casilla.addEventListener('click', function (ev) {
+                    const elemento = ev.target;
+
+                    if (elemento.classList.contains('turno_x') || elemento.classList.contains('turno_o')) {
+                        ev.preventDefault();
+                        return;
+                    }
+
+                    const jugador = turno;
+                    elemento.dataset.jugador = jugador;
+                    elemento.classList.add('turno_' + jugador);
+
+                    for (let valor of elemento.value) {
+                        cuenta[jugador][valor]++;
+                    }
+                    registro.push(elemento);
+
+                    if (registro.length > 6) {
+                        const primero = registro.shift();
+                        const dueno = primero.dataset.jugador;
+                        primero.checked = false;
+                        primero.classList.remove('turno_x', 'turno_o');
+                        for (let valor of primero.value) {
+                            cuenta[dueno][valor]--;
+                        }
+                    }
+
+                    casillas.forEach(function (c) {
+                        c.classList.remove('ultimo');
+                    });
+
+                    if (registro.length == 6) {
+                        registro[0].classList.add('ultimo');
+                    }
+
+                    if (Object.values(cuenta[jugador]).includes(3)) {
+                        alert('Ganador ' + jugador);
+                        casillas.forEach(function (c) {
+                            c.checked = false;
+                            c.classList.remove('turno_x', 'turno_o');
+                        });
+
+                        cuenta = {
+                            x: { a: 0, b: 0, c: 0, d: 0, e: 0, f: 0, g: 0, h: 0 },
+                            o: { a: 0, b: 0, c: 0, d: 0, e: 0, f: 0, g: 0, h: 0 }
+                        };
+                        registro = [];
+                        turno = 'x';
+                        return;
+                    }
+
+                    turno = (jugador == 'x') ? 'o' : 'x';
+                });
+            });
+        </script>
+    </main>
+</body>
+
+</html>

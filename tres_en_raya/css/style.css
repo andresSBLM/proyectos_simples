@@ -1,0 +1,72 @@
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --fondo-caja: grey;
+    --h1: white;
+    --sombras: black;
+    --fondo-casillas: linear-gradient(rgba(149, 147, 147, 0.558), rgba(255, 255, 255, 0.716));
+    --fondo-body: linear-gradient(135deg, pink, blue, yellowgreen, yellow, red);
+    --fondo-ultimo: linear-gradient(rgba(249, 13, 13, 0.558), rgba(195, 159, 30, 0.716));
+}
+
+h1 {
+    color: var(--h1);
+    text-shadow: 2px 2px 2px var(--sombras);
+    text-align: center;
+    padding-top: 30px;
+    font-size: 3rem;
+}
+
+body {
+    background: var(--fondo-body);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    min-height: 100svb;
+}
+
+form {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    gap: 5px;
+    justify-content: center;
+}
+
+input[type="checkbox"] {
+    appearance: none;
+    width: 100px;
+    height: 100px;
+    margin: 0;
+    background-color: var(--fondo-caja);
+    cursor: pointer;
+}
+
+.turno_o {
+    background: var(--fondo-casillas), url(../img/o.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.turno_x {
+    background: var(--fondo-casillas), url(../img/x.jpeg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.ultimo.turno_x {
+    background: var(--fondo-ultimo), var(--fondo-casillas), url(../img/x.jpeg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.ultimo.turno_o {
+    background: var(--fondo-ultimo), var(--fondo-casillas), url(../img/o.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
