@@ -36,7 +36,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <form id="form_usuarios" action="" method="post">
             <label>
                 Buscar por nombre: <br>
-                <input type="text" id="nombre" name="nombre"><br>
+                <input type="text" id="nombre" name="nombre"
+                value="<?= $nombre ?? ''?>"><br>
             </label>
             <button type="submit">Buscar</button>
         </form>
@@ -67,9 +68,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 foreach ($filas as $usuario) {
                     ?>
                     <tr>
-                        <td><?= $usuario['nombre'] ?></td>
-                        <td><?= $usuario['apellidos'] ?></td>
-                        <td><?= $usuario['email'] ?></td>
+                        <td class="nombre_usuario"><?= $usuario['nombre'] ?></td>
+                        <td class="apellidos_usuario"><?= $usuario['apellidos'] ?></td>
+                        <td class="email_usuario"><?= $usuario['email'] ?></td>
                     </tr>
                     <?php
                 }
@@ -78,7 +79,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </tbody>
         </table>
         <?php } ?>
-        <a href="index.php" class="volver">Volver</a>
+        <a href="index.php" class="botones_admin">Volver</a>
+        <a href="usuarios.php" id="mostrar_todos" class="botones_admin">Mostrar Todo</a>
     </main>
 </body>
 
