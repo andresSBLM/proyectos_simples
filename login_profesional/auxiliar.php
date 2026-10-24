@@ -11,7 +11,7 @@ function todos_usuarios(PDO $pdo): array {
 
 function obtener_post($campo): ?string{
       $elemento = $_POST[$campo];
-      return $elemento;
+      return trim($elemento);
 }
 
 function mover ($lugar) {

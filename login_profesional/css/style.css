@@ -5,21 +5,48 @@
 }
 
 :root {
+
+    /*Colores principales*/
     --blanco: white;
     --gris: grey;
     --negro: black;
     --verde: green;
     --morado: purple;
     --rojizo: rgb(187, 24, 62);
+    --marron: brown;
+
+    /*sombras*/
     --sombras: black;
+    --sombras-input: rgb(81, 4, 81);
+
+    /*Fondo*/
     --fondo-index: linear-gradient(90deg, rgb(149, 32, 52), purple, rgb(149, 32, 52));
     --fondo-main-index: linear-gradient(rgb(86, 6, 86), black,rgb(86, 6, 86));
     --fondo-input: rgb(183, 124, 183);
+    --fondo-checkbox: rgb(255, 255, 255);
+    --fondo-usuarios: linear-gradient(blue, rgb(8, 200, 239), rgb(145, 247, 12));
+    --fondo-usuarios-th:  rgb(85, 131, 16);
+    --fondo-usuarios-td:  rgb(202, 227, 111);
 }
 
 body {
     margin: 0;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+/*Clases globales*/
+.volver {
+    text-decoration: none;
+    color: var(--blanco);
+    text-align: center;
+    background-color: var(--marron);
+    padding: 10px;
+    border-radius: 10px;
+    font-weight: bold;
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 1;
 }
 
 
@@ -78,6 +105,38 @@ body {
     border: none;
     color: var(--blanco);
     text-shadow: 2px 2px 2px var(--morado);
+    box-shadow: inset 0 0 6px 4px var(--sombras-input);
+}
+
+#ver, #password {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#form_principal #ver {
+    width: 10%;
+}
+
+#ver.sin_ver {
+    appearance: none;
+    background-color: var(--fondo-checkbox);
+    background-image: url(../img/ojo_abierto.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+#ver.viendo {
+    appearance: none;
+    background-color: var(--fondo-checkbox);
+    background-image: url(../img/ojo_cerrado.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+#form_principal #password {
+    width: 85%;
 }
 
 #form_principal input::placeholder {
@@ -136,4 +195,44 @@ body {
 
 #errores_index ul {
     margin-bottom: 0;
+}
+
+/*Archivo usuarios.php */
+
+#body_usuarios {
+    background: var(--fondo-usuarios);
+    background-repeat: no-repeat;
+    min-height: 100vh;
+}
+
+#cabecera_usuarios h1 {
+    color: var(--blanco);
+    text-align: center;
+    text-shadow: 3px 3px 3px var(--sombras);
+}
+
+#main_usuarios table {
+    max-width: 90%;
+    width: 100%;
+    margin: auto;
+    border: 2px solid var(--verde);
+    border-collapse: collapse;
+    height: 200px;
+}
+
+#main_usuarios th, #main_usuarios td {
+    border: 2px solid var(--verde);
+} 
+
+#main_usuarios th {
+    background-color:var(--fondo-usuarios-th);
+    text-align: center;
+    height: 40px;
+    color: var(--blanco);
+    text-shadow: 2px 2px 2px var(--sombras);
+}
+
+#main_usuarios td {
+    padding-left: 10px;
+    background-color: var(--fondo-usuarios-td);
 }

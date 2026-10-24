@@ -15,8 +15,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (!$password) {
         $errores[] = 'La contraseña está vacía.';
-    } 
-    
+    }
+
     if (!$errores) {
         comprobar_usuario_contrasena($pdo, $email, $password, $errores);
     }
@@ -46,17 +46,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <fieldset id="form_principal">
                 <legend>Inicio de sesión</legend>
                 <label>
-                    <input type="text" id="email" name="email" placeholder="Correo Electrónico">
+                    <input type="text" id="email" name="email" placeholder="Correo Electrónico" 
+                    value="<?= htmlspecialchars($email ?? '')?>">
                 </label>
                 <br>
                 <label>
+                    <input type="checkbox" id="ver" name="ver" value="marcado" class="sin_ver">
                     <input type="password" id="password" name="password" placeholder="Contraseña">
                 </label>
                 <div id="errores_index">
                     <ul>
-                        <?php foreach($errores as $error) { ?> 
-                        <li><?= $error ?></li> <?php
-                        }?>
+                        <?php foreach ($errores as $error) { ?>
+                            <li><?= $error ?></li> <?php
+                        } ?>
                     </ul>
                 </div>
                 <br>
@@ -70,6 +72,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </fieldset>
         </form>
     </main>
+    <script>
+        const ver = document.getElementById('ver');
+        const password = document.getElementById('password');
+
+        ver.addEventListener('click', function () {
+            if (ver.checked) {
+                ver.className = "viendo";
+                password.type = 'text';
+            } else {
+                ver.className = "sin_ver";
+                password.type = 'password';
+            }
+        });
+    </script>
 </body>
 
 </html>
