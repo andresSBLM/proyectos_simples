@@ -21,7 +21,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     confirmar_usuario_nuevo($pdo, $email, $errores);
 
     if (empty($errores)) {
-        insertar_usuario($pdo, $nombre, $apellidos, $email, $contrasena);
+        $contrasena_cifrada = password_hash($contrasena, PASSWORD_DEFAULT);
+        insertar_usuario($pdo, $nombre, $apellidos, $email, $contrasena_cifrada);
     }
 }
 ?>

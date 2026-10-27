@@ -171,6 +171,7 @@ body {
     opacity: 0.5;
 }
 #main_index legend {
+    width: 100%;
     text-align: center;
     padding-top: 20px;
     color: var(--negro);

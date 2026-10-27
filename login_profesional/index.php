@@ -15,10 +15,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (!$password) {
         $errores[] = 'La contraseña está vacía.';
-    }
-
-    if (!$errores) {
-        comprobar_usuario_contrasena($pdo, $email, $password, $errores);
+    } elseif ($email){
+        $contraseña_db = obtener_contrasena($pdo, $email);
+        if (!$contraseña_db || !password_verify($password, $contraseña_db)) {
+            $errores[] = 'Email o contraseña incorrectos';
+        }
+        
     }
 
     if (!$errores) {

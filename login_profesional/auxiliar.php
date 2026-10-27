@@ -24,14 +24,6 @@ function mover ($lugar) {
     exit;
 }
 
-function comprobar_usuario_contrasena(PDO $pdo, string $email, string $password, &$errores):void {
-    $sent = $pdo->prepare("SELECT * FROM usuarios WHERE email = :email and contrasena = :contrasena");
-    $sent->execute([':email' => $email, ':contrasena'=> $password]);
-    if (empty($sent->fetchAll())) {
-        $errores[] = 'Email o contraseña incorrectos';
-    }
-}
-
 /* Archivo usuarios.php */
 
 function validar_nombre($nombre, &$errores): void {
@@ -115,3 +107,10 @@ function insertar_usuario(PDO $pdo, string $nombre, string $apellidos, string $e
         ':contrasena' => $contrasena
     ]);
 }
+
+function obtener_contrasena(PDO $pdo, string $email): ?string {
+    $sent = $pdo->prepare('SELECT contrasena FROM usuarios WHERE email = :email');
+    $sent->execute([':email'=>$email]);
+    return $sent->fetchColumn() ?: null;
+}
+
