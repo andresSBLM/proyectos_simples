@@ -25,6 +25,7 @@
         var intentos = 0;
         var numero_palabras = 0;
         var tiempo_inicio;
+        var contenedor = document.createElement("article");
         const main = document.getElementById("main_voltear");
         async function voltear() {
             try {
@@ -34,8 +35,6 @@
                 }
                 const palabras = await documento.json();
                 numero_palabras = palabras.length;
-
-                let contenedor = document.createElement("article");
                 for (let x = 0; x < palabras.length; x++) {
                     var boton = document.createElement("button");
                     boton.id = "bot" + x;
@@ -43,24 +42,15 @@
                     boton.addEventListener("click", function () {
                         hacer_intento(x, palabras);
                     });
-                    contenedor.appendChild(boton);
-                    if ((x + 1) % 5 == 0) {
-                        const salto = document.createElement("br");
-                        contenedor.appendChild(salto);
-                        main.append(contenedor);
-                        contenedor = document.createElement("article");
-                    }
-                }
-
-                if (contenedor.children.length > 0) {
-                    main.appendChild(contenedor);
-                }
+                    contenedor.appendChild(boton);    
+                }      
 
             } catch (err) {
                 alert(err);
             }
 
         }
+        main.append(contenedor);
 
         function hacer_intento(num, palabras) {
             if (intentos === 0) {
