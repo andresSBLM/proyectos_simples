@@ -34,23 +34,25 @@
                     throw new Error('No se pudo cargar el archivo');
                 }
                 const palabras = await documento.json();
+                palabras.sort(() => Math.random() - 0.5);
                 numero_palabras = palabras.length;
-                for (let x = 0; x < palabras.length; x++) {
-                    var boton = document.createElement("button");
+
+                contenedor.innerHTML = "";
+                main.append(contenedor);
+
+                for (let x = 0; x < numero_palabras; x++) {
+                    const boton = document.createElement("button");
                     boton.id = "bot" + x;
                     boton.textContent = palabras[x].palabra;
                     boton.addEventListener("click", function () {
                         hacer_intento(x, palabras);
                     });
-                    contenedor.appendChild(boton);    
-                }      
-
+                    contenedor.appendChild(boton);
+                }
             } catch (err) {
                 alert(err);
             }
-
         }
-        main.append(contenedor);
 
         function hacer_intento(num, palabras) {
             if (intentos === 0) {
@@ -81,10 +83,10 @@
                 main.innerHTML = "";
                 const tiempo_final = Date.now();
                 const tiempo = tiempo_final - tiempo_inicio;
-                const minutos = 1000*60;
+                const minutos = 1000 * 60;
                 const segundos = 1000;
-                alert("Tienes "+ fallos + " fallos y " + aciertos + " aciertos. Tardaste: " + 
-                (tiempo / minutos).toFixed(0) + " min , " + ((tiempo % minutos) / segundos).toFixed(0) + " seg");
+                alert("Tienes " + fallos + " fallos y " + aciertos + " aciertos. Tardaste: " +
+                    (tiempo / minutos).toFixed(0) + " min , " + ((tiempo % minutos) / segundos).toFixed(0) + " seg");
                 var reset = confirm("¿Quieres volver a intentarlo?");
                 if (reset) {
                     fallos = 0;

@@ -161,6 +161,11 @@ article {
     color: var(--blanco);
     text-shadow: 2px 2px 2px var(--verde);
     font-weight: bold;
+    box-shadow: inset 0 7px 4px 1px rgb(2, 95, 32),
+                inset 0 -7px 4px 1px rgb(17, 124, 9) ,
+                3px 8px 4px 1px rgb(6, 227, 13);
+    text-shadow: 4px 5px 3px var(--sombras-verde);
+    pointer-events: none;
 }
 
 #body_voltear #main_voltear .fallo {
@@ -168,6 +173,11 @@ article {
     color: var(--blanco);
     text-shadow: 2px 2px 2px var(--sombras);
     font-weight: bold;
+    box-shadow: inset 0 7px 4px 1px rgb(110, 26, 5),
+                inset 0 -7px 4px 1px rgb(165, 6, 6) ,
+                3px 8px 4px 1px rgb(255, 107, 107);
+    text-shadow: 4px 5px 3px var(--rojo);
+    pointer-events: none;
 }
 
 #main_voltear button {
@@ -176,7 +186,7 @@ article {
     background-repeat: no-repeat;
     background-size: cover;
     color: var(--color-texto-cartas);
-    font-size: clamp(1rem, 2.5vw, 2rem);
+    font-size: 2rem;
     border: none;
     border-radius: 20px;
     font-weight: bold;
