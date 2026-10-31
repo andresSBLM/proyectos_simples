@@ -44,14 +44,14 @@ body {
     margin: auto;
     padding-top: 60px;
     border-radius: 40px;
-    box-shadow: 6px 6px 20px var(--blanco),
-                -6px -6px 20px var(--blanco),
-                12px 12px 20px var(--negro),
-                -12px -12px 20px var(--negro),
-                -6px 10px 20px black,
-                -4px 6px 20px white,
-                6px -6px 20px rgb(255, 255, 255),
-                12px -10px 20px black
+    box-shadow: 6px 6px 20px var(--negro),
+                -6px -6px 20px var(--negro),
+                12px 12px 20px var(--blanco),
+                -12px -12px 20px var(--blanco),
+                -6px 10px 20px white,
+                -6px 6px 20px var(--negro),
+                6px -6px 20px var(--negro),
+                12px -10px 20px white
                 ;
 }
 
