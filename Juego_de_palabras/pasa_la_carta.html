@@ -4,11 +4,123 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pasa la carta</title>
+    <link rel="stylesheet" href="css/style2.css">
 </head>
 <body>
     <header>
         <h1>Pasa la carta</h1>
         <p>Traduce al español la siguiente palabra</p>
     </header>
+    <main id="main">
+        
+    </main>
+    <footer id="pie">
+        <div id="aciertos">0</div>
+        <div id="errores">0</div>
+    </footer>
+    <script>
+        const MAIN = document.getElementById("main");
+        const PIE = document.getElementById("pie");
+        const MOVER_Y = 5;
+        const MOVER_X = 5;
+        const MOVER_Z_INDEX = 1 
+        var y = 300;
+        var left = 400;
+        var id = 1;
+        var z;
+        var LIMITE;
+        var tarjetas = 11;
+        var palabras ;
+        
+        const ACIERTOS = document.getElementById("aciertos");
+        const FALLOS = document.getElementById("errores");
+        var errores = 0;
+        var aciertos = 0; 
+        var turno = 0;
+
+        async function cartas() {
+        
+            const documento = await fetch('palabras.json', { cache: 'no-store' });
+            if (!documento.ok) {
+                alert('No se pudo cargar el archivo');
+                return;
+            }
+            palabras = await documento.json();
+            palabras.sort(() => Math.random() - 0.5);
+            LIMITE = palabras.length;
+            z = LIMITE;
+            for (let x = 0; x <= tarjetas - 1; x++) {
+                const CARTA = document.createElement("span");
+                CARTA.id = id;
+                CARTA.classList.add("carta");
+                CARTA.style.top = `${y}px`;
+                CARTA.style.left = `${left}px`;
+                CARTA.style.zIndex = z;
+                CARTA.setAttribute("onclick", "mover_carta()");
+                CARTA.textContent = palabras[x].traduccion;
+                MAIN.appendChild(CARTA);
+                y -= MOVER_Y;
+                left += MOVER_X;
+                z -= MOVER_Z_INDEX;
+                id++;
+            }
+        }
+
+        cartas();
+
+        function mover_carta() {
+            
+            const CARTAS = document.getElementsByClassName("carta");
+            const carta_de_turno = palabras[turno];
+            const INTENTO = prompt(`¿Traducción de ${carta_de_turno.traduccion}?`);
+            (INTENTO == carta_de_turno.palabra) ? aciertos++ : errores++;
+            
+            for (let carta of CARTAS) {
+                const LEFT_ACTUAL = parseFloat(carta.style.left); 
+                const TOP_ACTUAL = parseFloat(carta.style.top);
+                const INDEX_ACTUAL = parseInt(carta.style.zIndex);
+                const ID_ACTUAL = parseInt(carta.id);
+                const LEFT_NUEVA = LEFT_ACTUAL - MOVER_X;
+                const TOP_NUEVA = TOP_ACTUAL + MOVER_Y;
+                const INDEX_NUEVO = INDEX_ACTUAL + 1;
+                const ID_NUEVO = ID_ACTUAL - 1;
+
+                carta.style.zIndex = INDEX_NUEVO;
+                carta.style.left = `${LEFT_NUEVA}px`;
+                carta.style.top = `${TOP_NUEVA}px`;
+                carta.id = ID_NUEVO;
+            }
+            MAIN.firstElementChild.style.top = '1000px';
+            setTimeout(() => {
+                MAIN.firstElementChild.remove();
+                FALLOS.textContent = errores;
+                ACIERTOS.textContent = aciertos;
+                MAIN.style.pointerEvents = "auto";
+            }, 1000);
+            MAIN.style.pointerEvents = "none";
+            turno++;
+            
+            if (tarjetas != LIMITE) {
+                const NUEVA_CARTA = document.createElement("span");
+                NUEVA_CARTA.id = 10;
+                NUEVA_CARTA.classList.add("carta");
+                NUEVA_CARTA.style.top = `-300px`;
+                NUEVA_CARTA.style.left = `${left - MOVER_X}px`;
+                NUEVA_CARTA.style.zIndex = z;
+                NUEVA_CARTA.setAttribute("onclick", "mover_carta()");
+                NUEVA_CARTA.textContent = palabras[tarjetas].traduccion;
+                MAIN.appendChild(NUEVA_CARTA);
+                NUEVA_CARTA.offsetHeight;
+                NUEVA_CARTA.style.top = `${y + MOVER_Y}px`;
+                tarjetas++;
+            } else {
+                return;
+            }
+
+        }
+
+
+
+    </script>
 </body>
 </html>
