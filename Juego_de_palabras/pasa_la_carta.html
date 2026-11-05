@@ -73,8 +73,13 @@
             const CARTAS = document.getElementsByClassName("carta");
             const carta_de_turno = palabras[turno];
             const INTENTO = prompt(`¿Traducción de ${carta_de_turno.traduccion}?`);
-            (INTENTO == carta_de_turno.palabra) ? aciertos++ : errores++;
-            
+            if (INTENTO == carta_de_turno.palabra) {
+                aciertos++;
+            } else if (!INTENTO) {
+                return;
+            } else { 
+                errores++;
+            }
             for (let carta of CARTAS) {
                 const LEFT_ACTUAL = parseFloat(carta.style.left); 
                 const TOP_ACTUAL = parseFloat(carta.style.top);
