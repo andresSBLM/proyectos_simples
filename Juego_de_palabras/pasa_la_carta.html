@@ -14,18 +14,32 @@
     <main id="main">
         
     </main>
+    <section id="palabra_traducida">
+        <div id="palabra">
+
+        </div>
+        <div id="introducido">
+
+        </div>
+        <div id="traduccion">
+
+        </div>
+    </section>
     <footer id="pie">
         <div id="aciertos">0</div>
         <div id="errores">0</div>
     </footer>
     <script>
         const MAIN = document.getElementById("main");
+        const RESULTADO_PALABRA = document.getElementById("palabra");
+        const RESULTADO_INTRODUCIDO = document.getElementById("introducido");
+        const RESULTADO_TRADUCCION = document.getElementById("traduccion");
         const PIE = document.getElementById("pie");
         const MOVER_Y = 5;
         const MOVER_X = 5;
         const MOVER_Z_INDEX = 1 
         var y = 300;
-        var left = 400;
+        var left = 500;
         var id = 1;
         var z;
         var LIMITE;
@@ -73,13 +87,22 @@
             const CARTAS = document.getElementsByClassName("carta");
             const carta_de_turno = palabras[turno];
             const INTENTO = prompt(`¿Traducción de ${carta_de_turno.traduccion}?`);
-            if (INTENTO == carta_de_turno.palabra) {
-                aciertos++;
-            } else if (!INTENTO) {
+            if (INTENTO) {
+                if (INTENTO.toLowerCase() == carta_de_turno.palabra.toLowerCase()) {
+                    aciertos++;
+                    RESULTADO_INTRODUCIDO.classList.remove("fallo");
+                    RESULTADO_INTRODUCIDO.classList.add("acierto");
+                } else { 
+                    errores++;
+                    RESULTADO_INTRODUCIDO.classList.add("fallo");
+                    RESULTADO_INTRODUCIDO.classList.remove("acierto");
+                }
+            } else {
                 return;
-            } else { 
-                errores++;
             }
+            RESULTADO_PALABRA.textContent = `PALABRA: ${palabras[turno].traduccion}`;
+            RESULTADO_INTRODUCIDO.textContent = `INTRODUCIDO: ${INTENTO}`;
+            RESULTADO_TRADUCCION.textContent = `TRADUCCIÓN: ${palabras[turno].palabra}`;
             for (let carta of CARTAS) {
                 const LEFT_ACTUAL = parseFloat(carta.style.left); 
                 const TOP_ACTUAL = parseFloat(carta.style.top);
@@ -96,6 +119,7 @@
                 carta.id = ID_NUEVO;
             }
             MAIN.firstElementChild.style.top = '1000px';
+            
             setTimeout(() => {
                 MAIN.firstElementChild.remove();
                 FALLOS.textContent = errores;

@@ -6,11 +6,11 @@ body {
     border:0 ;
     max-width: 800px;
     margin: auto;
-    background: radial-gradient(white, brown);
+    background: radial-gradient(white, rgb(161, 107, 57));
     height: 100vh;
     display: grid;
     overflow: hidden;
-    min-width: 800px;
+    min-width: 1000px;
     max-height: 1400px;
 }
 
@@ -37,14 +37,22 @@ footer > * {
     display: grid;
     place-items: center;
     height: 50px;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
 #errores {
     background-color: red;
+    box-shadow: inset 3px 3px 8px rgb(243, 132, 115),
+                inset -3px -3px 8px rgb(136, 12, 12),
+                3px 3px 3px rgba(0, 0, 0, 0.449);
 }
 
 #aciertos {
     background-color: green;
+    box-shadow: inset 3px 3px 8px rgb(142, 253, 142),
+                inset -3px -3px 8px rgb(4, 76, 4),
+                3px 3px 3px rgba(0, 0, 0, 0.449);
 }
 
 .carta {
@@ -56,7 +64,8 @@ footer > * {
     border-radius: 10px;
     box-shadow: inset 0px 5px 8px 0 rgb(112, 23, 150),
                 inset -3px -5px 8px 0 rgb(206, 82, 36),
-                3px 5px 3px 0 rgba(0, 0, 0, 0.449);
+                0px -1px 5px rgb(251, 141, 240),
+                1px -3px 5px rgb(255, 216, 216);
     transition: top 1s, left 0.5s;
     display: grid;
     place-items: center;
@@ -66,4 +75,36 @@ footer > * {
     text-align: center;
     text-shadow: 3px 3px 3px black;
     border-top:  1px solid rgb(4, 4, 57);
+}
+
+#palabra_traducida {
+    background-color: aliceblue;
+    margin-left: 20px;
+    margin-right: 20px;
+    border-radius: 10px;
+    height: 60px;
+    box-shadow: inset 3px 3px 8px rgb(195, 193, 193),
+                inset -2px -2px 8px rgb(62, 62, 62),
+                3px 3px 8px black;
+    text-align: center;
+    font-weight: bold;
+    display: grid;
+    place-items: center;
+    display: flex;
+}
+
+#palabra_traducida > * {
+    flex: 1 1 auto;
+}
+
+.acierto {
+    color: green;
+}
+
+.fallo {
+    color: red;
+}
+
+#palabra , #traduccion {
+    color: rgb(138, 100, 12);
 }
