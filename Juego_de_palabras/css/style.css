@@ -44,12 +44,15 @@
 /*Archivo principal de inicio index.html */
 
 
+
 #body_inicio {
     background: var(--fondo-body-inicio), url(../img/body_inicio.jpeg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     min-height: 100vh;
+    max-width: 1000px;
+    margin: auto;
 }
 
 #cabecera_inicio{

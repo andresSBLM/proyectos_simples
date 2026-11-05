@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/style2.css">
 </head>
 <body>
+    <div id="pantalla">
     <header>
         <h1>Pasa la carta</h1>
         <p>Traduce al español la siguiente palabra</p>
@@ -29,6 +30,8 @@
         <div id="aciertos">0</div>
         <div id="errores">0</div>
     </footer>
+    <div class="volver"><a href="index.html">Volver</a></div>
+    </div>
     <script>
         const MAIN = document.getElementById("main");
         const RESULTADO_PALABRA = document.getElementById("palabra");
@@ -65,13 +68,15 @@
             z = LIMITE;
             for (let x = 0; x <= tarjetas - 1; x++) {
                 const CARTA = document.createElement("span");
+                const P = document.createElement("p");
                 CARTA.id = id;
                 CARTA.classList.add("carta");
                 CARTA.style.top = `${y}px`;
                 CARTA.style.left = `${left}px`;
                 CARTA.style.zIndex = z;
                 CARTA.setAttribute("onclick", "mover_carta()");
-                CARTA.textContent = palabras[x].traduccion;
+                P.textContent = palabras[x].traduccion;
+                CARTA.appendChild(P);
                 MAIN.appendChild(CARTA);
                 y -= MOVER_Y;
                 left += MOVER_X;
@@ -116,9 +121,11 @@
                 carta.style.zIndex = INDEX_NUEVO;
                 carta.style.left = `${LEFT_NUEVA}px`;
                 carta.style.top = `${TOP_NUEVA}px`;
+                
                 carta.id = ID_NUEVO;
             }
-            MAIN.firstElementChild.style.top = '1000px';
+            MAIN.firstElementChild.style.top = '1100px';
+            MAIN.firstElementChild.style.opacity = 0;
             
             setTimeout(() => {
                 MAIN.firstElementChild.remove();
@@ -131,13 +138,15 @@
             
             if (tarjetas != LIMITE) {
                 const NUEVA_CARTA = document.createElement("span");
+                const NUEVO_P = document.createElement("p");
                 NUEVA_CARTA.id = 10;
                 NUEVA_CARTA.classList.add("carta");
                 NUEVA_CARTA.style.top = `-300px`;
                 NUEVA_CARTA.style.left = `${left - MOVER_X}px`;
                 NUEVA_CARTA.style.zIndex = z;
                 NUEVA_CARTA.setAttribute("onclick", "mover_carta()");
-                NUEVA_CARTA.textContent = palabras[tarjetas].traduccion;
+                NUEVO_P.textContent = palabras[tarjetas].traduccion;
+                NUEVA_CARTA.appendChild(NUEVO_P);
                 MAIN.appendChild(NUEVA_CARTA);
                 NUEVA_CARTA.offsetHeight;
                 NUEVA_CARTA.style.top = `${y + MOVER_Y}px`;
