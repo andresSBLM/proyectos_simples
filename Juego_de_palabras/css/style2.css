@@ -12,6 +12,31 @@ body {
     overflow: hidden;
     min-width: 1000px;
     max-height: 1400px;
+    gap: 20px;
+}
+
+header {
+    text-align: center;
+    width: 100%;
+}
+
+h1 {
+    font-size: 5rem;
+    background: linear-gradient(red, blue);
+    width: fit-content;
+    background-clip: text;
+    color: transparent;
+    margin: auto;
+    margin-top: 60px;
+}
+
+p {
+    font-size: 2rem;
+    background: linear-gradient(rgb(231, 11, 216), blue);
+    width: fit-content;
+    background-clip: text;
+    color: transparent;
+    margin: auto;
 }
 
 
