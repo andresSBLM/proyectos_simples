@@ -6,7 +6,7 @@ body {
     border:0 ;
     max-width: 800px;
     margin: auto;
-    background: repeating-radial-gradient( rgb(255, 255, 255), rgb(194, 42, 194), black);
+    background: repeating-radial-gradient( rgb(255, 255, 255), rgb(186, 137, 46), rgb(161, 69, 3));
     background-repeat: no-repeat;
     height: 100vh;
     display: grid;
@@ -27,7 +27,7 @@ header {
 
 h1 {
     font-size: 5rem;
-    background: linear-gradient(red, blue);
+    background: linear-gradient(rgb(99, 106, 5), rgb(69, 73, 5));
     width: fit-content;
     background-clip: text;
     color: transparent;
@@ -38,18 +38,18 @@ h1 {
 
 header p {
     font-size: 2rem;
-    background: linear-gradient(rgb(231, 11, 216), blue);
+    background: linear-gradient(rgb(105, 129, 10), rgb(230, 227, 215));
     width: fit-content;
     background-clip: text;
     color: transparent;
     margin: auto;
-    filter: drop-shadow(3px 3px 5px white);
+    filter: drop-shadow(2px 2px 1px rgb(92, 79, 7));
 }
 
 
 main {
     position: relative;
-    height: 500px;
+    height: 420px;
 }
 
 footer {
@@ -87,29 +87,30 @@ footer > * {
     position: absolute;
     height: 300px;
     width: 300px;
-    background: repeating-conic-gradient(blue 0, rgb(255, 0, 149) 90deg, green 180deg , yellow 270deg , blue 360deg);
+    background: repeating-conic-gradient(rgb(153, 43, 6) 0, rgb(225, 164, 8) 90deg,rgb(153, 43, 6) 90deg, rgb(225, 164, 8) 180deg);
     transform: translate(-50%, -50%);
     border-radius: 10px;
-    box-shadow: inset 0px 5px 8px 0 rgb(112, 23, 150),
-                inset -3px -5px 8px 0 rgb(206, 82, 36),
-                0px -1px 5px rgb(251, 141, 240),
-                1px -3px 5px rgb(255, 216, 216);
-    transition: top 1s, left 0.5s,  opacity  1s;
+    box-shadow: inset 0px 5px 8px 0 rgb(224, 162, 75),
+                inset -3px -5px 8px 0 rgb(152, 96, 7),
+                0px -1px 5px rgb(96, 47, 10),
+                1px -3px 5px rgb(143, 111, 5),
+                3px 3px 3px black;
+    transition: top 2s, left 0.5s,  opacity  2s;
     display: grid;
     place-items: center;
     font-size: 2.3rem;
     padding: 20px;
     text-align: center;
-    border-top:  1px solid rgb(4, 4, 57);
+    border-top:  1px solid rgb(8, 8, 8);
 }
 
 .carta  p {
-    background: linear-gradient(rgb(0, 0, 0) 30%, rgb(172, 19, 233) 60%);
+    background: linear-gradient(rgb(250, 250, 249) 30%, rgb(209, 173, 125) 60%);
     font-weight: bold;
     background-clip: text;
     color: transparent;
     width: fit-content;
-    filter:drop-shadow(2px 2px 2px white);
+    filter:drop-shadow(2px 2px 2px rgb(2, 2, 2));
 }
 
 .carta:focus {
@@ -117,12 +118,12 @@ footer > * {
 }
 
 #palabra_traducida {
-    background-color: aliceblue;
+    background-color: rgb(234, 190, 145);
     border-radius: 10px;
     height: 60px;
-    box-shadow: inset 3px 3px 8px rgb(195, 193, 193),
-                inset -2px -2px 8px rgb(62, 62, 62),
-                3px 3px 8px black;
+    box-shadow: inset 3px 3px 8px rgb(243, 167, 96),
+                inset -2px -2px 8px rgb(145, 93, 25),
+                3px 3px 8px rgb(94, 55, 3);
     text-align: center;
     font-weight: bold;
     place-items: center;
@@ -153,7 +154,7 @@ footer > * {
     margin: auto;
     font-size: 2rem;
     font-weight: bold;
-    background-color: yellow;
+    background-color: rgb(104, 104, 11);
     border-radius: 20px;
     margin-top: 10px;
     

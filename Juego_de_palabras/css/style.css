@@ -209,3 +209,26 @@ article {
                 2px 8px 4px 1px rgb(249, 222, 86);
     transform: translateY(4px);
 }
+
+.volver {
+    position: fixed;
+    right: 20px;
+    bottom: 30px;
+    padding: 10px;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+    background-color: rgb(29, 68, 5);
+    border-radius: 20px;
+    box-shadow: inset 3px 3px 3px rgb(159, 242, 76),
+                inset -3px -3px 3px rgb(58, 78, 4),
+                3px 3px 3px rgba(2, 41, 13, 0.715);
+    width: 200px;
+}
+
+.volver a {
+    text-decoration: none;
+    color: rgb(243, 251, 246);
+    font-weight: bold;
+    text-shadow: 1px 1px 5px rgb(9, 108, 29);
+}
