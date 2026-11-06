@@ -1,36 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pasa la carta</title>
     <link rel="stylesheet" href="css/style2.css">
 </head>
+
 <body>
     <div id="pantalla">
-    <header>
-        <h1>Pasa la carta</h1>
-        <p>Traduce al español la siguiente palabra</p>
-    </header>
-    <main id="main">
-        
-    </main>
-    <section id="palabra_traducida">
-        <div id="palabra">
+        <header>
+            <h1>Pasa la carta</h1>
+            <p>Traduce al español la siguiente palabra</p>
+        </header>
+        <main id="main">
 
-        </div>
-        <div id="introducido">
+        </main>
+        <section id="palabra_traducida">
+            <div id="palabra">
 
-        </div>
-        <div id="traduccion">
+            </div>
+            <div id="introducido">
 
-        </div>
-    </section>
-    <footer id="pie">
-        <div id="aciertos">0</div>
-        <div id="errores">0</div>
-    </footer>
-    <div class="volver"><a href="index.html">Volver</a></div>
+            </div>
+            <div id="traduccion">
+
+            </div>
+        </section>
+        <footer id="pie">
+            <div id="aciertos">0</div>
+            <div id="errores">0</div>
+        </footer>
+        <div class="volver"><a href="index.html">Volver</a></div>
     </div>
     <script>
         const MAIN = document.getElementById("main");
@@ -40,26 +42,26 @@
         const PIE = document.getElementById("pie");
         const MOVER_Y = 10;
         const MOVER_X = 10;
-        const MOVER_Z_INDEX = 1 
+        const MOVER_Z_INDEX = 1
         var y = 250;
         var left = 500;
         var id = 1;
         var z;
         var LIMITE;
         var tarjetas = 3;
-        var palabras ;
-        
+        var palabras;
+
         const ACIERTOS = document.getElementById("aciertos");
         const FALLOS = document.getElementById("errores");
         var errores = 0;
-        var aciertos = 0; 
+        var aciertos = 0;
         var turno = 0;
 
         var tiempo_inicio;
         var tiempo_fin;
 
         async function cartas() {
-        
+
             const documento = await fetch('palabras.json', { cache: 'no-store' });
             if (!documento.ok) {
                 alert('No se pudo cargar el archivo');
@@ -103,7 +105,7 @@
                     aciertos++;
                     RESULTADO_INTRODUCIDO.classList.remove("fallo");
                     RESULTADO_INTRODUCIDO.classList.add("acierto");
-                } else { 
+                } else {
                     errores++;
                     RESULTADO_INTRODUCIDO.classList.add("fallo");
                     RESULTADO_INTRODUCIDO.classList.remove("acierto");
@@ -115,7 +117,7 @@
             RESULTADO_INTRODUCIDO.textContent = `INTRODUCIDO: ${INTENTO}`;
             RESULTADO_TRADUCCION.textContent = `TRADUCCIÓN: ${palabras[turno].palabra}`;
             for (let carta of CARTAS) {
-                const LEFT_ACTUAL = parseFloat(carta.style.left); 
+                const LEFT_ACTUAL = parseFloat(carta.style.left);
                 const TOP_ACTUAL = parseFloat(carta.style.top);
                 const INDEX_ACTUAL = parseInt(carta.style.zIndex);
                 const ID_ACTUAL = parseInt(carta.id);
@@ -127,12 +129,12 @@
                 carta.style.zIndex = INDEX_NUEVO;
                 carta.style.left = `${LEFT_NUEVA}px`;
                 carta.style.top = `${TOP_NUEVA}px`;
-                
+
                 carta.id = ID_NUEVO;
             }
             MAIN.firstElementChild.style.top = '1100px';
             MAIN.firstElementChild.style.opacity = 0;
-            
+
             setTimeout(() => {
                 MAIN.firstElementChild.remove();
                 FALLOS.textContent = errores;
@@ -143,26 +145,28 @@
             turno++;
 
             if (turno < LIMITE) {
-                const NUEVA_CARTA = document.createElement("span");
-                const NUEVO_P = document.createElement("p");
-                NUEVA_CARTA.id = 10;
-                NUEVA_CARTA.classList.add("carta");
-                NUEVA_CARTA.style.top = `-300px`;
-                NUEVA_CARTA.style.left = `${left - MOVER_X}px`;
-                NUEVA_CARTA.style.zIndex = z;
-                NUEVA_CARTA.setAttribute("onclick", "mover_carta()");
-                NUEVO_P.textContent = palabras[tarjetas].traduccion;
-                NUEVA_CARTA.appendChild(NUEVO_P);
-                MAIN.appendChild(NUEVA_CARTA);
-                NUEVA_CARTA.offsetHeight;
-                NUEVA_CARTA.style.top = `${y + MOVER_Y}px`;
-                tarjetas++;
+                if (LIMITE > tarjetas) {
+                    const NUEVA_CARTA = document.createElement("span");
+                    const NUEVO_P = document.createElement("p");
+                    NUEVA_CARTA.id = 10;
+                    NUEVA_CARTA.classList.add("carta");
+                    NUEVA_CARTA.style.top = `-300px`;
+                    NUEVA_CARTA.style.left = `${left - MOVER_X}px`;
+                    NUEVA_CARTA.style.zIndex = z;
+                    NUEVA_CARTA.setAttribute("onclick", "mover_carta()");
+                    NUEVO_P.textContent = palabras[tarjetas].traduccion;
+                    NUEVA_CARTA.appendChild(NUEVO_P);
+                    MAIN.appendChild(NUEVA_CARTA);
+                    NUEVA_CARTA.offsetHeight;
+                    NUEVA_CARTA.style.top = `${y + MOVER_Y}px`;
+                    tarjetas++;
+                }
             } else {
                 setTimeout(() => {
                     tiempo_fin = new Date();
                     const tiempo_total = tiempo_fin - tiempo_inicio;
                     const tiempo_total_minutos = (tiempo_total / 1000 / 60).toFixed();
-                    const tiempo_total_segundos = ((tiempo_total / 1000) % 60).toFixed(); 
+                    const tiempo_total_segundos = ((tiempo_total / 1000) % 60).toFixed();
                     alert(`Felicidades acabaste el juego en ${(tiempo_total_minutos)} minuyos y ${(tiempo_total_segundos)} segundos`)
                 }, 1000)
                 return;
@@ -174,4 +178,5 @@
 
     </script>
 </body>
+
 </html>
