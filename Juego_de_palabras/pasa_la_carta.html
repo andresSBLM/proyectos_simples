@@ -55,6 +55,9 @@
         var aciertos = 0; 
         var turno = 0;
 
+        var tiempo_inicio;
+        var tiempo_fin;
+
         async function cartas() {
         
             const documento = await fetch('palabras.json', { cache: 'no-store' });
@@ -85,10 +88,13 @@
             }
         }
 
+
         cartas();
 
         function mover_carta() {
-            
+            if (!tiempo_inicio) {
+                tiempo_inicio = new Date();
+            }
             const CARTAS = document.getElementsByClassName("carta");
             const carta_de_turno = palabras[turno];
             const INTENTO = prompt(`¿Traducción de ${carta_de_turno.traduccion}?`);
@@ -135,8 +141,8 @@
             }, 1000);
             MAIN.style.pointerEvents = "none";
             turno++;
-            
-            if (tarjetas != LIMITE) {
+
+            if (turno < LIMITE) {
                 const NUEVA_CARTA = document.createElement("span");
                 const NUEVO_P = document.createElement("p");
                 NUEVA_CARTA.id = 10;
@@ -152,6 +158,13 @@
                 NUEVA_CARTA.style.top = `${y + MOVER_Y}px`;
                 tarjetas++;
             } else {
+                setTimeout(() => {
+                    tiempo_fin = new Date();
+                    const tiempo_total = tiempo_fin - tiempo_inicio;
+                    const tiempo_total_minutos = (tiempo_total / 1000 / 60).toFixed();
+                    const tiempo_total_segundos = ((tiempo_total / 1000) % 60).toFixed(); 
+                    alert(`Felicidades acabaste el juego en ${(tiempo_total_minutos)} minuyos y ${(tiempo_total_segundos)} segundos`)
+                }, 1000)
                 return;
             }
 
