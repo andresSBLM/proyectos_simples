@@ -40,15 +40,27 @@
             elemento.style.pointerEvents = "none";
             const EJEX = elemento.dataset.ejex;
             const EJEY = elemento.dataset.ejey;
-            if (EJEX == EJEY) {
-                contador.a++;
-                alert(contador.a);
+            if (turno == "x") {
+                if (EJEX == 2 && EJEY == 2) {
+                    contador.a++;
+                    contador.b++;
+                }
+                else if (EJEX == EJEY) {
+                    contador.a++;
+                } elseif ((EJEX == 3 && EJEY == 1) || (EJEX == 1 && EJEY == 3)) {
+                    contador.a++;
+                }
             }
             const AGREGAR = [EJEX, EJEY];
             movimientos.unshift(AGREGAR);
             turno = (turno == "x") ? "o": "x";
             elemento.classList.add(turno);
             if (movimientos.length == 7) {
+                for (let elem of contador) {
+                    if (elem == 3 || elem == -3) {
+                        alert("Has ganado")
+                    }
+                }
                 const ULTIMO = movimientos[movimientos.length - 1];
                 const POSX = ULTIMO[0];
                 const POSY = ULTIMO[1];
