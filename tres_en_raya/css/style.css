@@ -3,70 +3,54 @@
 }
 
 :root {
-    --fondo-caja: grey;
-    --h1: white;
-    --sombras: black;
-    --fondo-casillas: linear-gradient(rgba(149, 147, 147, 0.558), rgba(255, 255, 255, 0.716));
-    --fondo-body: linear-gradient(135deg, pink, blue, yellowgreen, yellow, red);
-    --fondo-ultimo: linear-gradient(rgba(249, 13, 13, 0.558), rgba(195, 159, 30, 0.716));
-}
-
-h1 {
-    color: var(--h1);
-    text-shadow: 2px 2px 2px var(--sombras);
-    text-align: center;
-    padding-top: 30px;
-    font-size: 3rem;
+    --tamaño: 700px;
 }
 
 body {
-    background: var(--fondo-body);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    min-height: 100svb;
+    max-width: 800px;
+    min-height: 100vh;
+    margin: auto;
+    background: repeating-conic-gradient(rgba(0, 0, 0, 0.089) 0 25%, rgba(255, 255, 255, 0.11) 25% 50%) 0 0 / 80px 80px ;
 }
 
-form {
+h1 {
+    text-align: center;
+    width: fit-content;
+    margin: auto;
+    margin-top: 80px;
+    font-size: 4rem;
+    background: linear-gradient(brown, yellow);
+    background-clip: text;
+    color: transparent;
+    filter: drop-shadow( 2px 2px black);
+    margin-bottom: 40px;
+}
+
+#pantalla {
     display: grid;
-    grid-template-columns: repeat(3, 100px);
-    gap: 5px;
-    justify-content: center;
+    height: var(--tamaño);
+    display: flex;
+    gap: 2px;
 }
 
-input[type="checkbox"] {
-    appearance: none;
-    width: 100px;
-    height: 100px;
-    margin: 0;
-    background-color: var(--fondo-caja);
-    cursor: pointer;
+#fila {
+    flex: 1 1 auto;
+    background-color: rgb(119, 223, 188);
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
 }
 
-.turno_o {
-    background: var(--fondo-casillas), url(../img/o.png);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+#cuadrado {
+    flex: 1 1 auto;
+    background-color: rgb(255, 255, 255);
+    margin: 5px;
 }
 
-.turno_x {
-    background: var(--fondo-casillas), url(../img/x.jpeg);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+#fila .x {
+    background: linear-gradient(white, black) ;
 }
 
-.ultimo.turno_x {
-    background: var(--fondo-ultimo), var(--fondo-casillas), url(../img/x.jpeg);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-.ultimo.turno_o {
-    background: var(--fondo-ultimo), var(--fondo-casillas), url(../img/o.png);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+#fila .o {
+    background: linear-gradient(white, red);
 }
